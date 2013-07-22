@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: org.csail.genesis.ui
+Bundle-Vendor: None
+Bundle-Version: 0.0.3
+Bundle-SymbolicName: org.csail.genesis.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.csail.genesis;visibility:=reexport,
+ org.eclipse.xtext.ui,
+ org.eclipse.ui.editors;bundle-version="3.5.0",
+ org.eclipse.ui.ide;bundle-version="3.5.0",
+ org.eclipse.xtext.ui.shared,
+ org.eclipse.ui,
+ org.eclipse.xtext.builder,
+ org.antlr.runtime,
+ org.eclipse.xtext.common.types.ui,
+ org.eclipse.xtext.ui.codetemplates.ui,
+ org.eclipse.compare,
+ org.eclipse.xtext.xbase.ui
+Import-Package: org.apache.log4j,
+ org.eclipse.xtext.xbase.lib
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.csail.genesis.ui.quickfix,
+ org.csail.genesis.ui.contentassist,
+ org.csail.genesis.ui.contentassist.antlr,
+ org.csail.genesis.ui.internal
+Bundle-Activator: org.csail.genesis.ui.internal.GenesisActivator

@@ -1,0 +1,165 @@
+grammar org.csail.genesis.Genesis
+hidden(WS, SL_COMMENT)
+
+generate genesis "http://www.csail.org/genesis/Genesis"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+Model:
+    (header += Sentence)*
+    sections += Section*
+;
+	
+Section:
+    (CommonsenseKnowledge | ReflexiveKnowledge | Perspective)
+;
+
+CommonsenseKnowledge:
+    {CommonsenseKnowledge}
+    name = CommonsenseKnowledgeHeader
+    body = Description
+;
+
+CommonsenseKnowledgeHeader:
+    "Start" "commonsense" "knowledge" "."
+;
+
+ReflexiveKnowledge:
+    {ReflexiveKnowledge}
+    name = ReflexiveKnowledgeHeader
+    (subsections += ReflexiveDescription)*
+;
+
+ReflexiveKnowledgeHeader:
+    "Start" "reflexive" "knowledge" "."
+;
+
+ReflexiveDescription:
+    {ReflexiveDescription}
+    name = ReflexiveDescriptionHeader
+    body = Description
+    TheEndFooter
+;
+
+TheEndFooter:
+    "The" "end" "."
+;
+
+ReflexiveDescriptionHeader:
+    "Start" "description" "of" QUOTED_TEXT "."
+;
+
+Perspective:
+    {Perspective}
+    name = PerspectiveHeader
+    (subsections += Story)*
+;
+
+PerspectiveHeader:
+    WORD "perspective" "."
+;
+
+Story:
+    {Story}
+    name = StoryHeader
+    body = Description
+    TheEndFooter
+;
+
+StoryHeader:
+    "Start" "story" "titled" QUOTED_TEXT "."
+;
+
+Description:
+    {Description}
+    (sentences += Sentence)*
+;
+
+Sentence:
+    {Sentence}
+    (
+        (
+            (
+                (fragments += REGULAR_FRAGMENT) |
+                //
+                // "Start commonsense knowledge" handling.
+                //
+                (fragments += "Start" fragments += "knowledge") |
+                (fragments += "Start" fragments += "commonsense" fragments += REGULAR_FRAGMENT) |
+                (fragments += "Start" fragments += "The") |
+                (fragments += "Start" fragments += "end") |
+                (fragments += "Start" fragments += "of") |
+                (fragments += "Start" fragments += "Start") |
+                (fragments += "Start" fragments += REGULAR_FRAGMENT ) |
+                (fragments += "knowledge") | (fragments += "commonsense") |
+                //
+                // "Start reflexive knowledge" handling.
+                //
+                (fragments += "Start" fragments += "reflexive" fragments += REGULAR_FRAGMENT) |
+                (fragments += "reflexive") |
+                //
+                // "Start description of <title>" handling.
+                //
+                (fragments += "Start" fragments += "description" fragments += REGULAR_FRAGMENT) |
+                (fragments += "description") | (fragments += "of") |
+                //
+                // "The end" handling.
+                //
+                (fragments += "The" fragments += "commonsense") |
+                (fragments += "The" fragments += "knowledge") |
+                (fragments += "The" fragments += "reflexive") |
+                (fragments += "The" fragments += "description") |
+                (fragments += "The" fragments += "of") |
+                (fragments += "The" fragments += "story") |
+                (fragments += "The" fragments += "titled") |
+                (fragments += "The" fragments += "Start") |
+                (fragments += "The" fragments += "The") |
+                (fragments += "The" fragments += REGULAR_FRAGMENT) |
+                (fragments += "end") |
+                //
+                // "Start story titled" handling.
+                //
+                (fragments += "Start" fragments += "titled") |
+                (fragments += "Start" fragments += "story" fragments += REGULAR_FRAGMENT) |
+                (fragments += "story") | (fragments += "titled")
+//                //
+//                // "????? perspective" handling.
+//                //
+//                (fragments += "perspective")
+            )* 
+            (
+                (fragments += "Start") | 
+                (fragments += "The") |
+                (fragments += "Start" fragments += "commonsense") |
+                (fragments += "Start" fragments += "reflexive") |
+                (fragments += "Start" fragments += "description") |
+                (fragments += "Start" fragments += "story")
+            )? '.'
+        )    
+   )
+;
+
+REGULAR_FRAGMENT:
+    (QUOTED_TEXT |  WORD | ',' | ';')
+;
+
+terminal QUOTED_TEXT: 
+    '"' ( !('"') )* '"'
+;
+
+terminal WORD:
+    ('0'..'9' | 'a'..'z' | 'A'..'Z' | '_' | '"' | "'")+
+;
+  
+terminal SL_COMMENT : 
+    '//' !('\n'|'\r')* ('\r'? '\n')?
+;
+ 
+terminal WS  : 
+    (' '|'\t'|'\r'|'\n')+
+;
+ 
+terminal ANY_OTHER: 
+    .
+;
+

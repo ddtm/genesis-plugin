@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.csail.genesis/src-gen" editDirectory="/org.csail.genesis.edit/src"
+    editorDirectory="/org.csail.genesis.editor/src" modelPluginID="org.csail.genesis"
+    forceOverwrite="true" modelName="Genesis" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="5.0" copyrightFields="false" editPluginID="org.csail.genesis.edit"
+    editorPluginID="org.csail.genesis.editor" runtimeVersion="2.9">
+  <genPackages prefix="Genesis" basePackage="org.csail.genesis" disposableProviderFactory="true"
+      fileExtensions="txt" ecorePackage="Genesis.ecore#/">
+    <genClasses ecoreClass="Genesis.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//Model/header"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//Model/sections"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//Section">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Genesis.ecore#//Section/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//CommonsenseKnowledge">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//CommonsenseKnowledge/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//ReflexiveKnowledge">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//ReflexiveKnowledge/subsections"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//ReflexiveDescription">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Genesis.ecore#//ReflexiveDescription/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//ReflexiveDescription/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//Perspective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//Perspective/subsections"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//Story">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Genesis.ecore#//Story/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//Story/body"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//Description">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Genesis.ecore#//Description/sentences"/>
+    </genClasses>
+    <genClasses ecoreClass="Genesis.ecore#//Sentence">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Genesis.ecore#//Sentence/fragments"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

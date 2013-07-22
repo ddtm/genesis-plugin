@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<templates>
+<template id="ref_desc" autoinsert="true" context="org.csail.genesis.Genesis.ReflexiveDescription" deleted="false" description="" enabled="true" name="Reflexive Knowledge Description">Start description of "${name}".
+${cursor}
+The end.</template>
+<template id="story" autoinsert="true" context="org.csail.genesis.Genesis.Story" deleted="false" description="" enabled="true" name="Story">Start story titled "${name}".
+${cursor}
+The end.</template>
+<template id="dummy" autoinsert="true" context="org.csail.genesis.Genesis.Model" deleted="false" description="" enabled="true" name="Template File">Insert file Start experiment.
+Show both perspectives.
+Both perspectives.
+
+Start commonsense knowledge.
+${common_sense_knowledge_description}.
+		
+Start reflexive knowledge.
+Start description of "${reflexive_knowledge_title}".
+${reflexive_knowledge_description}.
+The end.
+
+First perspective.
+Start story titled "${story_title}".
+${story_description}.
+The end.
+</template>
+</templates>
